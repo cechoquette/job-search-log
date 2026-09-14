@@ -1,0 +1,1 @@
+Small desktop based app to save all job search related activities in an organized spreadsheet.
