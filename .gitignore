@@ -1,0 +1,15 @@
+/src/index.d.ts
+/src/index.d.ts.map
+/src/index.js
+/src/index.js.map
+/dist/
+/dist/index.d.ts
+/dist/index.d.ts.map
+/dist/index.js
+/node_modules/
+/node_modules/.bin/
+/node_modules/@types/
+/node_modules/@typescript/
+/node_modules/typescript/
+/node_modules/undici-types/
+/node_modules/.package-lock.json
