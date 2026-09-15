@@ -3,6 +3,6 @@ export interface Activity {
     description: string;
     duration?: number;
     url?: string;
-    category?: string;
+    category: string;
 }
 

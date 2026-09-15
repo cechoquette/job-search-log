@@ -35,7 +35,7 @@ durationDown?.addEventListener("click", () => {
     }
 });
 
-saveButton?.addEventListener("click", () => {
+saveButton?.addEventListener("click", async () => {
     const activity: Activity = {
         date: date.value,
         description: description.value,
@@ -46,4 +46,12 @@ saveButton?.addEventListener("click", () => {
     }
 
     console.log(activity);
+
+    try {
+        await window.jobSearchLog.saveActivity(activity);
+        saveButton.textContent = "Saved ✓";
+    } catch (error) {
+        console.error(error);
+        saveButton.textContent = "Save failed";
+    }
 });
