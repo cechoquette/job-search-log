@@ -10,14 +10,12 @@ const date = document.getElementById("date") as HTMLInputElement;
 const description = document.getElementById("description") as HTMLInputElement;
 const url = document.getElementById("url") as HTMLInputElement;
 const category = document.getElementById("category") as HTMLSelectElement;
-
-const saveButton = document.getElementById("save");
+const archivePageCheckbox = document.getElementById("archive-page") as HTMLInputElement;
+const saveButton = document.getElementById("save") as HTMLButtonElement;
 
 function convertMinutesToHrs(value: number): string {
     let hour: number = Math.floor(value / 60);
     let minutes: number = value % 60;
-
-
 
     return hour + "H" + minutes.toString().padStart(2, "0");
 }
@@ -42,14 +40,25 @@ saveButton?.addEventListener("click", async () => {
         duration: durationMinutes,
         url: url.value,
         category: category.value
-
     }
+
+    const shouldArchivePage = archivePageCheckbox.checked;
 
     console.log(activity);
 
     try {
         await window.jobSearchLog.saveActivity(activity);
-        saveButton.textContent = "Saved ✓";
+        if(shouldArchivePage && activity.url && activity.url.trim() !== "") {
+            try {
+                await window.jobSearchLog.archivePage(activity.url);
+                saveButton.textContent = "Saved and archived ✓";
+            } catch(error){
+                console.error(error);
+                saveButton.textContent = "Saved; archive failed";
+            }
+        } else {
+            saveButton.textContent = "Saved ✓";
+        }
     } catch (error) {
         console.error(error);
         saveButton.textContent = "Save failed";
