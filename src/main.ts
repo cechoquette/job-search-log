@@ -28,7 +28,7 @@ const menu = Menu.buildFromTemplate([
         submenu: [
             {
                 label: "Export activities to Excel",
-                accelerator: "CmdCtrl+Shift+E",
+                accelerator: "CmdOrCtrl+E",
                 click: async () => {
                     const exportFilePath = await exportActivities();
 
@@ -61,7 +61,7 @@ Menu.setApplicationMenu(menu);
 function createWindow(): void{
     const window = new BrowserWindow({
         width: 600,
-        height: 500,
+        height: 600,
         webPreferences: {
             preload: path.join(__dirname, "preload.cjs")
         }

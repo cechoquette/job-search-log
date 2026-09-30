@@ -58,9 +58,16 @@ saveButton?.addEventListener("click", async () => {
             }
         } else {
             saveButton.textContent = "Saved ✓";
+            setTimeout(() => {
+                saveButton.textContent = "Save Activity";
+            }, 2000);
         }
     } catch (error) {
         console.error(error);
         saveButton.textContent = "Save failed";
+    } finally {
+        setTimeout(() => {
+            saveButton.textContent = "Save Activity";
+        }, 2000);
     }
 });
